@@ -1,3 +1,4 @@
+# Washington DC Felony Sentences
 ## 1. What is your issue of interest (provide sufficient background information)?
 To predict and classify the sentence type of offense depending on the offense,age, offense category.Felony crimes carry the possibility of a prison sentence ranging from a year to life in prison and up to the death penalty.Sentences for felonies can range anywhere from one year to life in prison and, in some states and in the federal system, a sentence can include the death penalty (also called capital punishment). Generally speaking, the more serious the crime is, the longer the sentence can be. But other factors, such as a person's prior criminal history, can affect the length of sentence.
 ## 2. Why is this issue important to you and/or to others?
