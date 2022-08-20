@@ -1,4 +1,6 @@
 # DATA 606 FINAL PROJECT REPORT
+#### Sravan Chowdary Vuppalapati
+#### Campus ID: QI57017
 # Washington DC Felony Sentences
 
 ## PROJECT OVERVIEW
@@ -161,3 +163,8 @@ Some insightful observations:
 4. [https://medium.com/analytics-vidhya/how-to-carry-out-k-fold-cross-validation-on-an-imbalanced-classification-problem-6d3d942a8016](https://medium.com/analytics-vidhya/how-to-carry-out-k-fold-cross-validation-on-an-imbalanced-classification-problem-6d3d942a8016)
 5. [https://scdc.dc.gov/sites/default/files/dc/sites/scdc/publication/attachments/2016%20Voluntary%20Sentencing%20Guidelines%20Manual.pdf](https://scdc.dc.gov/sites/default/files/dc/sites/scdc/publication/attachments/2016%20Voluntary%20Sentencing%20Guidelines%20Manual.pdf)
 6. [https://scdc.dc.gov/page/glossary-001](https://scdc.dc.gov/page/glossary-001)
+
+
+## PROJECT PPT LINK : https://github.com/iamsaida/Team_A_DATA606/blob/main/PPT/USED%20CAR%20PRICE%20PREDICTION.pptx
+
+## PRESENTATION RECORDING YOUTUBE LINK : https://youtu.be/64MmvXDLugs
