@@ -7,8 +7,9 @@
 * Dataset Description
 * Data Cleanup
 * Exploratory Data Analysis
-* Feature Engineering, Pipelines
-* 
+* Feature Engineering, Pipelines,Modeling
+* Classification
+* Prediction
 
 
 ### Introduction: 
@@ -117,40 +118,46 @@ Some insightful observations:
 18. **Average Sentence Imposed**: The average sentence imposed is higher for Group M1 (First Degree Murder w or w/o armed) is higher among all other groups i.e., 451 months and least for D4 (Attempt distribution of a drug), 10 months.
 
 
-### Feature Engineering, Pipelines
+### Feature Engineering, Pipelines and Modeling
 1. * My objective is to predict sentence type.
   * But the distribution of classes seams to be imbalanced.
   * There are less samples for Long Split.Short Split Sentence and Long Split means offenders serving some time in prison and some time outside depending on their behaviour.
   * Probation also serves the same purpsose.So,I merged the Short Split and Long Split into Probation and thus making the class distribution balanced and making it a binary classification
 2. Most of my features are categorical and as a part of preprocessing, I have to label encode them for training.
 3. Most of the features are negatively correlated to target variable "SENTENCE_TYPE".I think it is a good correlation because higher correlation might have masked the prediction.
-4. I have built several pipelines for GridsearchCV.
+4. Since, there is a slight imbalance in the class data, I have done oversampling to negate the imbalance to some extent using SMOTE function which oversamples data and assigns more data for minority class.
+5. I have built several pipelines for GridsearchCV.
+6. This dataset has almost 24324 rows.We alteast need 80 % of the data for training.So, I split the data in 80:20  
 
-### Modeling and Classification
-1. Since, there is a slight imbalance in the class data, I have done oversampling to negate the imbalance to some extent using SMOTE function
-2. This dataset has almost 24324 rows.So, we alteast need 80 % of the data for training.
-#### Classification using Logistic Regression
-- Hyperparameters Used: Used 0.001, 0.1,1,10 as penalty strengths for grid search.
-- This model seems to be best for classification when hyperparameter C is 0.1
-- Accuracy of 60% cannot be considered a good discrimination.Since, the target variable is slightly imbalanced, I chose roc_auc_score as a metric to decide the model.
-- For this classifier, ROC_AUC score is 68% which has to be improved
+### Classification of Sentence Type
 #### Classification using Decision Tree Classifier
 - Hyperparameters Used: Used 1,2,3,4 as max_depths for grid search.
 - This model seems to be best for classification when hyperparameter max depth is 4
-- This model has 68% accuracy which is better compared to Logistic Regression.
-- Even the area has been increased to 74%,but that's not enough for a good classification.
+- This model has 70.4% accuracy 
+- Area under curve is 78%,but that's not enough for a good classification.
 #### Classification using KNN
 - Hyperparameters Used: Used 1,4,6,10 as number of neighbors for grid search.
 - This model seems to be best for classification when hyperparameter number of neighbors are 10
-- It seems like KNN is has better accuracy compared to Logistic and DTC having 70% accuracy
-- Also, the area of curve for KNN has also increased to 76%.
+- It seems like KNN is has better accuracy (81%) compared to DTC 
+- Also, the area of curve for KNN has also increased to 80%.
+#### Conclusion: I decide to use KNN for my classification having 81% accuracy. But using better modeling techniques to deal with class imbalance, we can improve accuracy.
 
-### Conclusion
-####After analyzing the three models, I think KNN Classifier can classify better compared to others.We can improve the accuracy by dealing the dataset imbalance through better modeling techniques.
+### Predicting the Number of Months Sentence Imposed
+**Feature Selection for Prediction**: 
+1. Due to less correlation between target variable(SENTENCE_IMPOSED_MONTHS) and  input variables, I have selected input features depending on the feature importance.
+2. Depending on the scores for each feature from the bar chart, I selected 'CHARGE_NUMBER','OFFENSE_TYPE', 'OFFENSE_SEVERITY_GROUP' columns for prediction.
+#### Prediction using KNN:
+* With a test train split of 80:20 and considering 8 nearest neighbors, KNN gave me an accuracy of 82.3%.
+* I want to improve accuracy over 85%
+#### Prediction using Random Forest:
+* This model seems to be best for prediction when number of estimators are 20.
+* The accuracy of this model is 84.3%
+#### Conclusion: I have used several algorithms.But Random Forest and KNN gave me best accuracies over others.Random Forest Algorithm has better accuracy compared to KNN. I use Random Forest for predicting the months of sentence.
 
 ### References:
 1. [https://www.alpharithms.com/correlation-matrix-heatmaps-python-152514/](https://www.alpharithms.com/correlation-matrix-heatmaps-python-152514/)
 2. [https://medium.com/geekculture/how-to-plot-a-treemap-in-python-48743061cfda](https://medium.com/geekculture/how-to-plot-a-treemap-in-python-48743061cfda)
 3. [https://machinelearningmastery.com/multinomial-logistic-regression-with-python/](https://machinelearningmastery.com/multinomial-logistic-regression-with-python/)
 4. [https://medium.com/analytics-vidhya/how-to-carry-out-k-fold-cross-validation-on-an-imbalanced-classification-problem-6d3d942a8016](https://medium.com/analytics-vidhya/how-to-carry-out-k-fold-cross-validation-on-an-imbalanced-classification-problem-6d3d942a8016)
-5. [https://github.com/appliedecon/data602-lectures](https://github.com/appliedecon/data602-lectures)
+5. [https://scdc.dc.gov/sites/default/files/dc/sites/scdc/publication/attachments/2016%20Voluntary%20Sentencing%20Guidelines%20Manual.pdf](https://scdc.dc.gov/sites/default/files/dc/sites/scdc/publication/attachments/2016%20Voluntary%20Sentencing%20Guidelines%20Manual.pdf)
+6. [https://scdc.dc.gov/page/glossary-001](https://scdc.dc.gov/page/glossary-001)
